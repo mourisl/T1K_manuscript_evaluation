@@ -120,8 +120,8 @@ for i, r in enumerate(ranges):
 	fpBwaRef.close()
 	subprocess.run("bwa index -p bwa_idx bwa_ref.fa > /dev/null", shell=True)
 	subprocess.run("bwa mem -t 8 bwa_idx bwa_query.fa > bwa.sam", shell=True)
-	subprocess.run("python3 /liulab/lsong/projects/kir/kir/HPRC/CigarToVcf.py bwa_ref.fa bwa_query.fa bwa.sam > bwa.vcf", shell=True)
-	subprocess.run("python3 /liulab/lsong/projects/kir/kir/HPRC/ComputeExonicDifference.py "+sys.argv[3]+" bwa.vcf > bwa_exondiff.out", shell=True)
+	subprocess.run("python3 CigarToVcf.py bwa_ref.fa bwa_query.fa bwa.sam > bwa.vcf", shell=True)
+	subprocess.run("python3 ComputeExonicDifference.py "+sys.argv[3]+" bwa.vcf > bwa_exondiff.out", shell=True)
 	fp = open("bwa_exondiff.out")
 	exonDiffs = []
 	for line in fp:
@@ -137,7 +137,7 @@ for i, r in enumerate(ranges):
 			calledAlleles[i].append(exonDiffs[j][0])
 		else:
 			break
-	subprocess.run("python3 /liulab/lsong/projects/kir/kir/HPRC/FindExonVcf.py "+sys.argv[3]+" bwa.vcf " + " ".join(calledAlleles[i]) + ">>" + vcfFile, shell=True)
+	subprocess.run("python3 FindExonVcf.py "+sys.argv[3]+" bwa.vcf " + " ".join(calledAlleles[i]) + ">>" + vcfFile, shell=True)
 #for allele in sorted(calledAlleles.keys()):
 #	print(allele)
 for i, alleles in enumerate(calledAlleles):
