@@ -20,15 +20,15 @@ while (<FP>)
 }
 close FP ;
 
-my $path="/liulab/lsong/projects/kir/kir/HPRC" ;
+my $path="./" ;
 foreach my $p (keys %sample)
 {
 	my $a1 = "$path/$genomePath/${p}.1_bwa_exon_genotype.out" ;
 	my $a2 = "$path/$genomePath/${p}.2_bwa_exon_genotype.out" ;
-	my $b = "$path/Illumina/${p}/${p}_genotype.tsv" ;
+	my $b = "$path/Illumina/${p}_genotype.tsv" ;
 
 	#my $result = `perl /liulab/lsong/projects/kir/kir/PairSampleCompare.pl $path/$a/${a}_genotype.tsv $path/$b/${b}_genotype.tsv | grep -v ^K` ;
-	my $result = `cat $a1 $a2 | python3 /liulab/lsong/projects/kir/kir/PairSampleCompare.py /dev/stdin $b --formata list --eval 1` ;
+	my $result = `cat $a1 $a2 | python3 PairSampleCompare.py /dev/stdin $b --formata list --eval 1` ;
 	foreach my $line (split /\n/, $result)
 	{
 		my @cols = split /\s+/, $line ;

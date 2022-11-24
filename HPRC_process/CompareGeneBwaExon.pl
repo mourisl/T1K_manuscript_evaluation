@@ -16,16 +16,16 @@ close FP ;
 
 
 my %geneResult ;
-my $path="/liulab/lsong/projects/kir/kir/HPRC" ;
+my $path="./" ;
 foreach my $p (keys %sample)
 {
 	my $a1 = "$path/Genome/${p}.1_bwa_exon_genotype.out" ;
 	my $a2 = "$path/Genome/${p}.2_bwa_exon_genotype.out" ;
-	my $b = "$path/Illumina/${p}/${p}_genotype.tsv" ;
+	my $b = "$path/Illumina/${p}_genotype.tsv" ;
 	
 #my $result = `perl /liulab/lsong/projects/kir/kir/PairSampleCompare.pl $path/$a/${a}_genotype.tsv $path/$b/${b}_genotype.tsv | grep -v ^K` ;
 	#`cat $a1 $a2 > tmp.out` ;
-	my $result = `cat $a1 $a2 | python3 /liulab/lsong/projects/kir/kir/PairSampleCompare.py /dev/stdin $b --formata list --eval 2` ;
+	my $result = `cat $a1 $a2 | python3 PairSampleCompare.py /dev/stdin $b --formata list --eval 2` ;
 	my @lines = split /\n/, $result ;
 	foreach my $line (@lines)
 	{

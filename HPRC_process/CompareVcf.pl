@@ -20,7 +20,7 @@ while (<FP>)
 }
 close FP ;
 
-my $path="/liulab/lsong/projects/kir/kir/HPRC" ;
+my $path="./" ;
 my $overallMatchCnt = 0 ;
 my $overallCnt = 0 ;
 foreach my $p (keys %sample)
@@ -29,7 +29,7 @@ foreach my $p (keys %sample)
 	my $l1 = "$path/$genomePath/${p}.1_bwa_exon_genotype.out" ;
 	my $a2 = "$path/$genomePath/${p}.2_exon.vcf" ;
 	my $l2 = "$path/$genomePath/${p}.2_bwa_exon_genotype.out" ;
-	my $b = "$path/Illumina/${p}/${p}_allele.vcf" ;
+	my $b = "$path/Illumina/${p}_allele.vcf" ;
 
 	#my $result = `perl /liulab/lsong/projects/kir/kir/PairSampleCompare.pl $path/$a/${a}_genotype.tsv $path/$b/${b}_genotype.tsv | grep -v ^K` ;
 	`cat $a1 $a2 > tmp.vcf` ;
