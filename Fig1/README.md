@@ -1,17 +1,17 @@
 ### Running commands for T1K, arcasHLA and OptiType on HLA genotyping
-T1K
+T1K:
 `
 run-t1k -o -1 read1 -2 read2 -f hlaidx/hla_{rna,dna}_seq.fa -t 8 --stage 0 --preset hla
 `
 
-arcasHLA
-`
+arcasHLA:
+```
 s=sample
-arcashla extract sample.bam -o $s -t 8
+arcashla extract sample_starAligned.sortedByCoord.out.bam -o $s -t 8
 arcashla genotype $s/${s}.extracted.1.fq.gz $s/${s}.extracted.2.fq.gz -t 8
-`
+```
 
-OptiType
+OptiType:
 `
 OptiTypePipeline.py --input read1 read2 --{rna,dna} --config optitype_config.ini
 `
