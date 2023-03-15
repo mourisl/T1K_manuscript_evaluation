@@ -15,6 +15,11 @@ OptiType:
 `
 OptiTypePipeline.py --input read1 read2 --{rna,dna} --config optitype_config.ini
 `
+### Creating the whitelist for T1K based on the list extracted from OptiType's code.
+
+1. Run `grep "freq_alleles =" /OptiType/OptiTypePipeline.py | cut -f4 -d\' | tr " " "\n" > optitype_freq_alleles.list` to extract the frequent allele list in OptiType.
+
+2. Run `perl filterSeq t1k/hlaidx/hla_dna_seq.fa optitype_freq_alleles.list > t1k_whitelist.out`. The file t1k_whitelist.out can be used in the "--alleleWhitelist" option in T1K. 
 
 ### Creating the T1K's reference filtered by OptiType's reference sequence.
 
