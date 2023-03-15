@@ -21,11 +21,11 @@ sub GetMajorAllele
 
 open FP, $ARGV[1] ;
 my %majorAllele ;
-my $line = <FP> ;
 while (<FP>)
 {
 	chomp ;
-	$line = $_ ;
+	my $line = $_ ;
+	next if ($line =~ /\s/) ;
 	my @cols = split ;
 	#my $s = $cols[0] ; #GetMajorAllele($cols[0]) ;
 	my $s = GetMajorAllele($cols[0]) ;
